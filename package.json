@@ -26,8 +26,7 @@
     "motion": "^12.23.24",
     "react": "^19.0.1",
     "react-dom": "^19.0.1",
-    "uuid": "^14.0.2",
-    "vite": "^6.2.3"
+    "uuid": "^14.0.2"
   },
   "devDependencies": {
     "@types/bcryptjs": "^3.0.0",
