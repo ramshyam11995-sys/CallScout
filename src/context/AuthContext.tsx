@@ -58,7 +58,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, res.token);
       setToken(res.token);
       setUser(res.user);
+      return;
     }
+    throw new Error(
+      'Authentication failed: No user session received from server. The backend API is not running or unreachable on this host.'
+    );
   };
 
   const registerWithEmail = async (email: string, pass: string, name?: string) => {
@@ -67,7 +71,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, res.token);
       setToken(res.token);
       setUser(res.user);
+      return;
     }
+    throw new Error(
+      'Registration failed: No user session received from server. The backend API is not running or unreachable on this host.'
+    );
   };
 
   const logout = async () => {

@@ -105,17 +105,33 @@ async function request<T>(
 
 // Authentication APIs
 export async function apiRegister(data: { email: string; password: string; name?: string }): Promise<AuthResponse> {
-  return request<AuthResponse>('/auth/register', {
+  const res = await request<AuthResponse>('/auth/register', {
     method: 'POST',
     body: JSON.stringify(data)
   });
+
+  if (!res || !res.token || !res.user) {
+    throw new Error(
+      'The backend server is not running on this URL. If deployed on Render as a "Static Site", please switch to a "Web Service" so the Node.js backend can run.'
+    );
+  }
+
+  return res;
 }
 
 export async function apiLogin(data: { email: string; password: string }): Promise<AuthResponse> {
-  return request<AuthResponse>('/auth/login', {
+  const res = await request<AuthResponse>('/auth/login', {
     method: 'POST',
     body: JSON.stringify(data)
   });
+
+  if (!res || !res.token || !res.user) {
+    throw new Error(
+      'The backend server is not running on this URL. If deployed on Render as a "Static Site", please switch to a "Web Service" so the Node.js backend can run.'
+    );
+  }
+
+  return res;
 }
 
 export async function apiGetMe(token: string): Promise<{ success: boolean; user: UserProfile }> {
