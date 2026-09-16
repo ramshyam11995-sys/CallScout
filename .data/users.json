@@ -1,0 +1,16 @@
+[
+  {
+    "id": "user_02628320f3bd4f54",
+    "email": "alex.morgan@test.com",
+    "password": "$2b$10$fKCBoYvdy5yPWBiGugpiOOtwNW7sCWcGesIF1LeU2r4aGKnmLos8O",
+    "name": "Alex Morgan",
+    "createdAt": "2026-09-14T11:55:59.267Z"
+  },
+  {
+    "id": "user_demo_default",
+    "email": "demo@callscout.ai",
+    "password": "$2b$10$yx20SKK3utgJk9vsrCORReOtqUUicTJUqIoXJaNEXuArguJDQ254S",
+    "name": "CallScout Demo User",
+    "createdAt": "2026-09-14T12:00:01.034Z"
+  }
+]

@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  calls     Call[]
+
+  @@map("users")
+}
+
+model Call {
+  id               String    @id @default(uuid())
+  userId           String    @map("user_id")
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  phoneNumber      String    @map("phone_number")
+  objective        String    @db.Text
+  questions        Json      @default("[]")
+  notes            String?   @db.Text
+  calleTaskId      String?   @map("calle_task_id")
+  idempotencyKey   String?   @map("idempotency_key")
+  status           String    @default("queued")
+  transcript       Json?
+  summary          String?   @db.Text
+  structuredResult Json?     @map("structured_result")
+  outcome          String?   @db.Text
+  duration         Int?
+  error            String?   @db.Text
+  createdAt        DateTime  @default(now()) @map("created_at")
+  completedAt      DateTime? @map("completed_at")
+  attemptsCount    Int       @default(1) @map("attempts_count")
+  lastSyncedAt     DateTime? @map("last_synced_at")
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@index([calleTaskId])
+  @@map("calls")
+}

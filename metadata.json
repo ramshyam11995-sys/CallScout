@@ -1,0 +1,6 @@
+{
+  "name": "CallScout AI",
+  "description": "AI-powered phone call agent built with CALL-E and Neon PostgreSQL that makes real outbound phone calls, handles natural voice conversations, and extracts structured data.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
